@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2f2f3b</color>
+    <color name="colorPrimaryDark">#22222a</color>
+    <color name="colorAccent">#ec7878</color>
+
+    <color name="itemTripDescriptionBackground">#99000000</color>
+    <color name="itemTripPictureTint">#15000000</color>
+
+    <color name="detailTripPictureTint">#99000000</color>
+
+</resources>

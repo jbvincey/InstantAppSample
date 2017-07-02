@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginXSmall">4dp</dimen>
+    <dimen name="marginSmall">8dp</dimen>
+    <dimen name="marginNormal">16dp</dimen>
+    <dimen name="marginLarge">32dp</dimen>
+    <dimen name="marginXLarge">64dp</dimen>
+
+    <dimen name="fontXXXSmall">12sp</dimen>
+    <dimen name="fontXXSmall">13sp</dimen>
+    <dimen name="fontXSmall">14sp</dimen>
+    <dimen name="fontSmall">15sp</dimen>
+    <dimen name="fontMedium">16sp</dimen>
+    <dimen name="fontLarge">17sp</dimen>
+    <dimen name="fontXLarge">18sp</dimen>
+    <dimen name="fontXXLarge">19sp</dimen>
+    <dimen name="fontXXXLarge">20sp</dimen>
+
+    <dimen name="fontTitle">30sp</dimen>
+
+    <dimen name="navigation_header_height">190dp</dimen>
+
+    <dimen name="buttonHeight">48dp</dimen>
+
+    <dimen name="itemTripTitleSize">18sp</dimen>
+    <dimen name="itemTripDescriptionViewHeight">60dp</dimen>
+
+    <dimen name="gradeDiskBackgroundSize">32dp</dimen>
+
+</resources>

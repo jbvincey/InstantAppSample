@@ -1,0 +1,74 @@
+[
+  {
+    "id" : "3945314588",
+    "cardImageFile": "bahamas",
+    "name": "Bahamas",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "grade": 4.5,
+    "contact": "bahamas@hotel.com",
+    "coordinates": {
+      "latitude": 24.717748,
+      "longitude": -77.781733
+    }
+  },
+  {
+    "id" : "8212387562",
+    "cardImageFile": "badvilbel",
+    "name": "Bad Vilbel",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "grade": 4.3,
+    "contact": "badvilbel@hotel.com",
+    "coordinates": {
+      "latitude": 50.192115,
+      "longitude": 8.743960
+    }
+  },
+  {
+    "id" : "8399271233",
+    "cardImageFile": "asos",
+    "name": "Asos",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "grade": 4.6,
+    "contact": "asos@hotel.com",
+    "coordinates": {
+      "latitude": 38.377846,
+      "longitude": 20.540899
+    }
+  },
+  {
+    "id" : "4183326314",
+    "cardImageFile": "prague",
+    "name": "Prague",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "grade": 4,
+    "contact": "prague@hotel.com",
+    "coordinates": {
+      "latitude": 50.076321,
+      "longitude": 14.440331
+    }
+  },
+  {
+    "id" : "6711734416",
+    "cardImageFile": "amsterdam",
+    "name": "Amsterdam",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "grade": 4.1,
+    "contact": "amsterdam@hotel.com",
+    "coordinates": {
+      "latitude": 52.373115,
+      "longitude": 4.892340
+    }
+  },
+  {
+    "id" : "2703426682",
+    "cardImageFile": "tunis",
+    "name": "Tunis",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "grade": 4.4,
+    "contact": "tunis@hotel.com",
+    "coordinates": {
+      "latitude": 36.799004,
+      "longitude": 10.180866
+    }
+  }
+]

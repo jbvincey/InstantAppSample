@@ -16,9 +16,6 @@ import com.backelite.instantappssample.model.Coordinates;
 import com.backelite.instantappssample.model.Trip;
 import com.backelite.instantappssample.presenters.DetailPresenter;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by jean-baptistevincey on 09/06/2017.
  */
@@ -29,22 +26,15 @@ public class DetailActivity extends AbstractDrawerActivity implements DetailPres
 
     private DetailPresenter presenter;
 
-    @BindView(R.id.detailActivityTripPicture)
-    ImageView tripPicture;
-    @BindView(R.id.detailActivityTripGrade)
-    TextView tripGrade;
-    @BindView(R.id.detailActivityTripName)
-    TextView tripName;
-    @BindView(R.id.detailActivityTripDescription)
-    TextView tripDescription;
-    @BindView(R.id.detailActivityActionLocation)
-    Button actionViewLocation;
-    @BindView(R.id.detailActivityActionContact)
-    Button actionViewContact;
-    @BindView(R.id.detailActivityActionShare)
-    Button actionViewShare;
-    @BindView(R.id.detailActivityBookButton)
-    Button bookButton;
+    private ImageView tripPicture;
+    private TextView tripGrade;
+    private TextView tripName;
+    private TextView tripDescription;
+    private Button actionViewLocation;
+    private Button actionViewContact;
+    private Button actionViewShare;
+
+    private Button bookButton;
 
     public static void startActivity(Context context, String tripId) {
         Intent intent = new Intent(context, DetailActivity.class);
@@ -58,6 +48,8 @@ public class DetailActivity extends AbstractDrawerActivity implements DetailPres
 
         String tripId = getIntent().getStringExtra(KEY_TRIP_ID);
 
+        findViews();
+
         presenter = DependencyManager.getInstance().provideDetailPresenter();
         presenter.bind(this);
 
@@ -65,17 +57,26 @@ public class DetailActivity extends AbstractDrawerActivity implements DetailPres
     }
 
     @Override
+    protected int getLayout() {
+        return R.layout.activity_detail;
+    }
+
+    private void findViews() {
+        tripPicture = (ImageView) findViewById(R.id.detailActivityTripPicture);
+        tripGrade = (TextView) findViewById(R.id.detailActivityTripGrade);
+        tripName = (TextView) findViewById(R.id.detailActivityTripName);
+        tripDescription = (TextView) findViewById(R.id.detailActivityTripDescription);
+        actionViewLocation = (Button) findViewById(R.id.detailActivityActionLocation);
+        actionViewContact = (Button) findViewById(R.id.detailActivityActionContact);
+        actionViewShare = (Button) findViewById(R.id.detailActivityActionShare);
+        bookButton = (Button) findViewById(R.id.detailActivityBookButton);
+    }
+
+    @Override
     public void onDestroy() {
         presenter.unbind();
         presenter = null;
         super.onDestroy();
-    }
-
-
-    @Override
-    protected void setContentAndBind() {
-        setContentView(R.layout.activity_detail);
-        ButterKnife.bind(this);
     }
 
     @Override

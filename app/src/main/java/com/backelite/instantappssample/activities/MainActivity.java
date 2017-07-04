@@ -12,35 +12,29 @@ import com.backelite.instantappssample.presenters.MainPresenter;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AbstractDrawerActivity implements MainPresenter.View, TripAdapter.TripAdapterItemListener {
 
     private MainPresenter presenter;
 
-    @BindView(R.id.mainActivityTripRecyclerview)
-    RecyclerView recyclerView;
-
-    private TripAdapter tripAdapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        recyclerView = (RecyclerView) findViewById(R.id.mainActivityTripRecyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         presenter = DependencyManager.getInstance().provideMainPresenter();
         presenter.bind(this);
         presenter.start();
-
     }
 
     @Override
-    protected void setContentAndBind() {
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    protected int getLayout() {
+        return R.layout.activity_main;
     }
+
 
     @Override
     public void onDestroy() {
@@ -51,8 +45,7 @@ public class MainActivity extends AbstractDrawerActivity implements MainPresente
 
     @Override
     public void displayTrips(List<Trip> tripList) {
-        tripAdapter = new TripAdapter(this, tripList, this);
-        recyclerView.setAdapter(tripAdapter);
+        recyclerView.setAdapter(new TripAdapter(this, tripList, this));
     }
 
     @Override

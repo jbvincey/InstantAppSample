@@ -14,9 +14,6 @@ import com.backelite.instantappssample.model.Trip;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by jean-baptistevincey on 20/06/2017.
  */
@@ -50,21 +47,27 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return tripList.size();
     }
 
+    public interface TripAdapterItemListener {
+
+        void onTripClicked(Trip trip);
+
+    }
+
     class TripViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.itemTripPicture)
-        ImageView tripPicture;
-        @BindView(R.id.itemTripText)
-        TextView tripTitle;
-        @BindView(R.id.itemTripGrade)
-        TextView tripGrade;
+        private ImageView tripPicture;
+        private TextView tripTitle;
+        private TextView tripGrade;
 
         TripViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            tripPicture = (ImageView) itemView.findViewById(R.id.itemTripPicture);
+            tripTitle = (TextView) itemView.findViewById(R.id.itemTripTitle);
+            tripGrade = (TextView) itemView.findViewById(R.id.itemTripGrade);
+
         }
 
-        public void bind(final Trip trip, final TripAdapterItemListener listener, Context context) {
+        void bind(final Trip trip, final TripAdapterItemListener listener, Context context) {
             tripTitle.setText(trip.getName());
             tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(context, trip.getCardImageFile()));
             tripGrade.setText(trip.getGradeAsString());
@@ -76,11 +79,5 @@ public class TripAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
         }
-    }
-
-    public interface TripAdapterItemListener {
-
-        void onTripClicked(Trip trip);
-
     }
 }

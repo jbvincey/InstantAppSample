@@ -1,6 +1,8 @@
 package com.backelite.instantappssample.activities;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -18,7 +20,6 @@ import com.backelite.instantappssample.helper.IntentHelper;
 import com.backelite.instantappssample.presenters.DrawerPresenter;
 import com.google.android.instantapps.InstantApps;
 
-import butterknife.BindView;
 
 /**
  * Created by jean-baptistevincey on 29/06/2017.
@@ -26,20 +27,20 @@ import butterknife.BindView;
 
 public abstract class AbstractDrawerActivity extends AppCompatActivity implements DrawerPresenter.View {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.navigationView)
-    NavigationView navigationView;
-    @BindView(R.id.drawer)
-    DrawerLayout drawerLayout;
+    private Toolbar toolbar;
+
+    private NavigationView navigationView;
+
+    private DrawerLayout drawerLayout;
 
     private DrawerPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentAndBind();
+        setContentView(getLayout());
 
+        findViews();
         if (toolbar == null || navigationView == null || drawerLayout == null) {
             throw new RuntimeException(this.getLocalClassName() + " must have a toolbar, a navigation view and a drawer layout");
         }
@@ -51,8 +52,14 @@ public abstract class AbstractDrawerActivity extends AppCompatActivity implement
         presenter.bind(this);
     }
 
-    //child activities should setup content view and bind items with butterknife in this method
-    protected abstract void setContentAndBind();
+    protected abstract @LayoutRes
+    int getLayout();
+
+    private void findViews() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+    }
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
@@ -65,27 +72,25 @@ public abstract class AbstractDrawerActivity extends AppCompatActivity implement
 
             // This method will trigger on item Click of navigation menu
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 if (menuItem.isChecked()) menuItem.setChecked(false);
                 else menuItem.setChecked(true);
 
                 drawerLayout.closeDrawers();
 
-                switch (menuItem.getItemId()) {
-
-                    case R.id.menuInstallApp:
-                        presenter.onInstallClicked();
-                        return true;
-                    case R.id.menuSettings:
-                        presenter.onSettingsClicked();
-                        return true;
-                    case R.id.menuAbout:
-                        presenter.onAboutClicked();
-                        return true;
-                    default:
-                        return true;
-
+                int id = menuItem.getItemId();
+                if (id == R.id.menuInstallApp) {
+                    presenter.onInstallClicked();
+                    return true;
+                } else if (id == R.id.menuSettings) {
+                    presenter.onSettingsClicked();
+                    return true;
+                } else if (id == R.id.menuAbout) {
+                    presenter.onAboutClicked();
+                    return true;
+                } else {
+                    return true;
                 }
             }
         });

@@ -20,7 +20,7 @@ import com.jbvincey.instantappssample.presenters.DetailPresenter;
  * Created by jean-baptistevincey on 09/06/2017.
  */
 
-public class DetailActivity extends AbstractDrawerActivity implements DetailPresenter.View {
+public class DetailsActivity extends AbstractDrawerActivity implements DetailPresenter.View {
 
     private static final String KEY_TRIP_ID = "KEY_TRIP_ID";
 
@@ -37,7 +37,7 @@ public class DetailActivity extends AbstractDrawerActivity implements DetailPres
     private Button bookButton;
 
     public static void startActivity(Context context, String tripId) {
-        Intent intent = new Intent(context, DetailActivity.class);
+        Intent intent = new Intent(context, DetailsActivity.class);
         intent.putExtra(KEY_TRIP_ID, tripId);
         context.startActivity(intent);
     }
@@ -82,8 +82,13 @@ public class DetailActivity extends AbstractDrawerActivity implements DetailPres
     @Override
     public void setupTripView(final Trip trip) {
         tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(this, trip.getCardImageFile()));
+        tripPicture.setVisibility(View.VISIBLE);
+        tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(this, trip.getCardImageFile()));
+        tripName.setVisibility(View.VISIBLE);
         tripName.setText(trip.getName());
+        tripGrade.setVisibility(View.VISIBLE);
         tripGrade.setText(trip.getGradeAsString());
+        tripDescription.setVisibility(View.VISIBLE);
         tripDescription.setText(trip.getDescription());
         bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,18 +96,21 @@ public class DetailActivity extends AbstractDrawerActivity implements DetailPres
                 presenter.onBookClicked();
             }
         });
+        actionViewLocation.setVisibility(View.VISIBLE);
         actionViewLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.onActionLocationClicked();
             }
         });
+        actionViewContact.setVisibility(View.VISIBLE);
         actionViewContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.onActionContactClicked();
             }
         });
+        actionViewShare.setVisibility(View.VISIBLE);
         actionViewShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

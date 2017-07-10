@@ -20,23 +20,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:src="@drawable/asos"
             android:tint="@color/detailTripPictureTint"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/tunis" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/detailActivityTripName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/trip_error_name"
             android:textColor="@android:color/white"
             android:textSize="@dimen/fontTitle"
             app:layout_constraintBottom_toBottomOf="@id/detailActivityTripPicture"
             app:layout_constraintLeft_toLeftOf="@id/detailActivityTripPicture"
             app:layout_constraintRight_toRightOf="@id/detailActivityTripPicture"
-            app:layout_constraintTop_toTopOf="@id/detailActivityTripPicture"
-            tools:text="Title" />
+            app:layout_constraintTop_toTopOf="@id/detailActivityTripPicture" />
 
         <TextView
             android:id="@+id/detailActivityTripGrade"
@@ -47,6 +47,7 @@
             android:padding="@dimen/marginNormal"
             android:textColor="@android:color/white"
             android:textSize="@dimen/fontXLarge"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/detailActivityTripPicture"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detailActivityTripPicture"
@@ -70,6 +71,7 @@
             android:layout_marginLeft="@dimen/marginLarge"
             android:layout_marginRight="@dimen/marginLarge"
             android:layout_marginTop="@dimen/marginNormal"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/detailActivityActionLocation"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -84,6 +86,7 @@
             android:layout_marginBottom="@dimen/marginNormal"
             android:drawableTop="@drawable/ic_room_black"
             android:text="@string/action_location"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/detailActivityBookButton"
             app:layout_constraintEnd_toStartOf="@+id/detailActivityActionShare"
             app:layout_constraintHorizontal_bias="0.5"
@@ -97,6 +100,7 @@
             android:layout_marginTop="0dp"
             android:drawableTop="@drawable/ic_email_black"
             android:text="@string/action_contact"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/detailActivityActionLocation"
             app:layout_constraintEnd_toStartOf="@+id/detailActivityActionLocation"
             app:layout_constraintHorizontal_bias="0.5"
@@ -111,6 +115,7 @@
             android:layout_marginTop="0dp"
             android:drawableTop="@drawable/ic_share_black"
             android:text="@string/action_share"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/detailActivityActionLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

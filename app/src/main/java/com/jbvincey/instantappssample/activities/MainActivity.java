@@ -55,7 +55,7 @@ public class MainActivity extends AbstractDrawerActivity implements MainPresente
 
     @Override
     public void goToTripDetails(String tripId) {
-        DetailActivity.startActivity(this, tripId);
+        DetailsActivity.startActivity(this, tripId);
     }
 
     @Override

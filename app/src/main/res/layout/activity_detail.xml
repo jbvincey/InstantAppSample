@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.backelite.instantappssample.activities.MainActivity">
+    tools:context="com.jbvincey.instantappssample.activities.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,13 +30,13 @@
             android:id="@+id/detailActivityTripName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/detailActivityTripPicture"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/fontTitle"
             app:layout_constraintBottom_toBottomOf="@id/detailActivityTripPicture"
             app:layout_constraintLeft_toLeftOf="@id/detailActivityTripPicture"
             app:layout_constraintRight_toRightOf="@id/detailActivityTripPicture"
-            tools:text="Title"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/fontTitle" />
+            app:layout_constraintTop_toTopOf="@id/detailActivityTripPicture"
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/detailActivityTripGrade"

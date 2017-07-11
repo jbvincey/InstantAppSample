@@ -1,5 +1,6 @@
 package com.jbvincey.instantappssample.activities;
 
+import android.content.ActivityNotFoundException;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -117,7 +118,11 @@ public abstract class AbstractDrawerActivity extends AppCompatActivity implement
 
     @Override
     public void displayPlayStoreDownload() {
-        startActivity(IntentHelper.getInstantTripPlayStoreIntent());
+        try {
+            startActivity(IntentHelper.getInstantTripPlayStoreAppIntent());
+        } catch (ActivityNotFoundException activityNotFoundException) {
+            startActivity(IntentHelper.getInstantTripPlayStoreBrowserIntent());
+        }
     }
 
     @Override

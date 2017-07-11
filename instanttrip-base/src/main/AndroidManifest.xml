@@ -24,7 +24,7 @@
 
                 <data
                     android:host="instantappsample.jbvincey.com"
-                    android:pathPattern="/trips"
+                    android:path="/trips"
                     android:scheme="http" />
             </intent-filter>
             <intent-filter>
@@ -35,13 +35,13 @@
 
                 <data
                     android:host="instantappsample.jbvincey.com"
-                    android:pathPattern="/trips"
+                    android:path="/trips"
                     android:scheme="https" />
             </intent-filter>
         </activity>
 
         <activity android:name="com.jbvincey.instantappssample.activities.DetailsActivity">
-            <intent-filter>
+            <intent-filter android:order="0">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -49,7 +49,7 @@
 
                 <data
                     android:host="instantappsample.jbvincey.com"
-                    android:pathPattern="/trip-details"
+                    android:pathPattern="/trips/.*"
                     android:scheme="http" />
             </intent-filter>
             <intent-filter>
@@ -60,7 +60,7 @@
 
                 <data
                     android:host="instantappsample.jbvincey.com"
-                    android:pathPattern="/trip-details"
+                    android:pathPattern="/trips/.*"
                     android:scheme="https" />
             </intent-filter>
         </activity>

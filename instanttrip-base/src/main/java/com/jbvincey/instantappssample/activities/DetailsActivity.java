@@ -52,8 +52,8 @@ public class DetailsActivity extends AbstractDrawerActivity implements DetailsPr
         String tripId = null;
         Intent intent = getIntent();
         Uri uri = intent.getData();
-        if (uri != null) {
-            tripId = uri.getQueryParameter(IntentHelper.KEY_QUERY_PARAMETER_TRIP);
+        if (uri != null && uri.getLastPathSegment() != null) {
+            tripId = uri.getLastPathSegment();
         } else if (intent.hasExtra(KEY_TRIP_ID)) {
             tripId = intent.getStringExtra(KEY_TRIP_ID);
         } else {

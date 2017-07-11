@@ -14,7 +14,6 @@ import com.jbvincey.instantappssample.model.Coordinates;
 public final class IntentHelper {
 
     public static final String INSTANT_TRIP_URL_AUTHORITY = "instantappsample.jbvincey.com";
-    public static final String KEY_QUERY_PARAMETER_TRIP = "tripId";
     private static final String PLAYSTORE_APP_BASE_URL = "market://details?id=";
     private static final String PLAYSTORE_BROWSER_BASE_URL = "https://play.google.com/store/apps/details?id=";
     private static final String PACKAGE_MAPS = "com.google.android.apps.maps";
@@ -23,7 +22,7 @@ public final class IntentHelper {
     private static final String SHARE_INTENT_TYPE = "text/plain";
     private static final String MAILTO_URI = "mailto:";
     private static final String HTTPS_SCHEME = "https";
-    private static final String DETAILS_ACTIVITY_PATH = "trip-details";
+    private static final String DETAILS_ACTIVITY_PATH = "trips";
 
     public static Intent getMapsLocationItent(Coordinates coordinates) {
         Uri mapsUri = Uri.parse(buildCoordinatesUri(coordinates));
@@ -75,7 +74,7 @@ public final class IntentHelper {
                 .scheme(HTTPS_SCHEME)
                 .authority(INSTANT_TRIP_URL_AUTHORITY)
                 .appendPath(DETAILS_ACTIVITY_PATH)
-                .appendQueryParameter(KEY_QUERY_PARAMETER_TRIP, tripId);
+                .appendPath(tripId);
 
         return new Intent(Intent.ACTION_VIEW, uriBuilder.build());
     }

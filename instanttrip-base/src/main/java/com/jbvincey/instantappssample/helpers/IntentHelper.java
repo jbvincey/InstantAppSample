@@ -1,11 +1,10 @@
-package com.jbvincey.instantappssample.helper;
+package com.jbvincey.instantappssample.helpers;
 
 import android.content.Intent;
 import android.net.Uri;
 
 import com.jbvincey.instantappssample.BuildConfig;
-import com.jbvincey.instantappssample.constants.Constants;
-import com.jbvincey.instantappssample.model.Coordinates;
+import com.jbvincey.instantappssample.models.Coordinates;
 
 /**
  * Created by jean-baptistevincey on 24/06/2017.
@@ -46,15 +45,25 @@ public final class IntentHelper {
         return intent;
     }
 
-    public static Intent getShareDetailUrlIntent(String tripId) {
+    public static Intent getShareDetailsUrlIntent(String tripId) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType(SHARE_INTENT_TYPE);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, buildDetailUrl(tripId));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, buildDetailsUrl(tripId).toString());
         return shareIntent;
     }
 
-    private static String buildDetailUrl(String tripId) {
-        return Constants.BASE_URL + "/" + tripId;
+    public static Intent getDetailsActivityUrl(String tripId) {
+        return new Intent(Intent.ACTION_VIEW, buildDetailsUrl(tripId));
+    }
+
+    private static Uri buildDetailsUrl(String tripId) {
+        Uri.Builder uriBuilder = new Uri.Builder();
+        uriBuilder
+                .scheme(HTTPS_SCHEME)
+                .authority(INSTANT_TRIP_URL_AUTHORITY)
+                .appendPath(DETAILS_ACTIVITY_PATH)
+                .appendPath(tripId);
+        return uriBuilder.build();
     }
 
     public static Intent getInstantTripPlayStoreAppIntent() {
@@ -68,16 +77,4 @@ public final class IntentHelper {
     private static Uri buildPlayStoreUrl(String baseUrl) {
         return Uri.parse(baseUrl + BuildConfig.APPLICATION_ID);
     }
-
-    public static Intent getDetailsActivityUrl(String tripId) {
-        Uri.Builder uriBuilder = new Uri.Builder();
-        uriBuilder
-                .scheme(HTTPS_SCHEME)
-                .authority(INSTANT_TRIP_URL_AUTHORITY)
-                .appendPath(DETAILS_ACTIVITY_PATH)
-                .appendPath(tripId);
-
-        return new Intent(Intent.ACTION_VIEW, uriBuilder.build());
-    }
-
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,10 +12,10 @@ import android.widget.TextView;
 
 import com.jbvincey.instantappssample.R;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
-import com.jbvincey.instantappssample.helper.IntentHelper;
-import com.jbvincey.instantappssample.helper.ResourceHelper;
-import com.jbvincey.instantappssample.model.Coordinates;
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.helpers.IntentHelper;
+import com.jbvincey.instantappssample.helpers.ResourceHelper;
+import com.jbvincey.instantappssample.models.Coordinates;
+import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.presenters.DetailsPresenter;
 
 /**
@@ -92,46 +93,42 @@ public class DetailsActivity extends AbstractDrawerActivity implements DetailsPr
     }
 
     @Override
-    public void setupTripView(final Trip trip) {
-        if (trip == null) {
-            showTripLoadingError();
-        } else {
-            tripPicture.setVisibility(View.VISIBLE);
-            tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(this, trip.getCardImageFile()));
-            tripName.setVisibility(View.VISIBLE);
-            tripName.setText(trip.getName());
-            tripGrade.setVisibility(View.VISIBLE);
-            tripGrade.setText(trip.getGradeAsString());
-            tripDescription.setVisibility(View.VISIBLE);
-            tripDescription.setText(trip.getDescription());
-            bookButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    presenter.onBookClicked();
-                }
-            });
-            actionViewLocation.setVisibility(View.VISIBLE);
-            actionViewLocation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    presenter.onActionLocationClicked();
-                }
-            });
-            actionViewContact.setVisibility(View.VISIBLE);
-            actionViewContact.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    presenter.onActionContactClicked();
-                }
-            });
-            actionViewShare.setVisibility(View.VISIBLE);
-            actionViewShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    presenter.onActionShareClicked();
-                }
-            });
-        }
+    public void setupTripView(@NonNull final Trip trip) {
+        tripPicture.setVisibility(View.VISIBLE);
+        tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(this, trip.getCardImageFile()));
+        tripName.setVisibility(View.VISIBLE);
+        tripName.setText(trip.getName());
+        tripGrade.setVisibility(View.VISIBLE);
+        tripGrade.setText(trip.getGradeAsString());
+        tripDescription.setVisibility(View.VISIBLE);
+        tripDescription.setText(trip.getDescription());
+        bookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onBookClicked();
+            }
+        });
+        actionViewLocation.setVisibility(View.VISIBLE);
+        actionViewLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onActionLocationClicked();
+            }
+        });
+        actionViewContact.setVisibility(View.VISIBLE);
+        actionViewContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onActionContactClicked();
+            }
+        });
+        actionViewShare.setVisibility(View.VISIBLE);
+        actionViewShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onActionShareClicked();
+            }
+        });
     }
 
     @Override
@@ -158,7 +155,7 @@ public class DetailsActivity extends AbstractDrawerActivity implements DetailsPr
 
     @Override
     public void displayShareIntent(String tripId) {
-        startActivity(IntentHelper.getShareDetailUrlIntent(tripId));
+        startActivity(IntentHelper.getShareDetailsUrlIntent(tripId));
     }
 
     @Override

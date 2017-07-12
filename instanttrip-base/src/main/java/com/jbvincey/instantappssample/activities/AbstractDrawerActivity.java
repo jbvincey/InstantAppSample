@@ -18,7 +18,7 @@ import android.view.View;
 import com.google.android.instantapps.InstantApps;
 import com.jbvincey.instantappssample.R;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
-import com.jbvincey.instantappssample.helper.IntentHelper;
+import com.jbvincey.instantappssample.helpers.IntentHelper;
 import com.jbvincey.instantappssample.presenters.DrawerPresenter;
 
 

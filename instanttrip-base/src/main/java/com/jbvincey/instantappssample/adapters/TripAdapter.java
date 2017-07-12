@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jbvincey.instantappssample.R;
-import com.jbvincey.instantappssample.helper.ResourceHelper;
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.helpers.ResourceHelper;
+import com.jbvincey.instantappssample.models.Trip;
 
 import java.util.List;
 

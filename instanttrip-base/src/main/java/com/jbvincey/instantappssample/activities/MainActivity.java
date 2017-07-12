@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.jbvincey.instantappssample.R;
 import com.jbvincey.instantappssample.adapters.TripAdapter;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.presenters.MainPresenter;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jbvincey.instantappssample.helper;
+package com.jbvincey.instantappssample.helpers;
 
 import android.content.Context;
 

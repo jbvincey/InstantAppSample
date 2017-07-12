@@ -1,7 +1,7 @@
 package com.jbvincey.instantappssample.presenters;
 
-import com.jbvincey.instantappssample.model.Coordinates;
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.models.Coordinates;
+import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.repositories.TripRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

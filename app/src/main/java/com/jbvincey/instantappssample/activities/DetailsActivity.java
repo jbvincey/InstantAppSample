@@ -143,7 +143,7 @@ public class DetailsActivity extends AbstractDrawerActivity implements DetailPre
 
     @Override
     public void displayShareIntent(String tripId) {
-        startActivity(IntentHelper.getShareDetailUrlIntent(tripId));
+        startActivity(IntentHelper.getShareDetailsUrlIntent(tripId));
     }
 
     @Override

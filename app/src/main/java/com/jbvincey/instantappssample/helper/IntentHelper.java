@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.jbvincey.instantappssample.BuildConfig;
-import com.jbvincey.instantappssample.constants.Constants;
 import com.jbvincey.instantappssample.model.Coordinates;
 
 /**
@@ -14,6 +13,7 @@ import com.jbvincey.instantappssample.model.Coordinates;
 public final class IntentHelper {
 
     public static final String INSTANT_TRIP_URL_AUTHORITY = "instantappsample.jbvincey.com";
+    public static final String KEY_QUERY_PARAMETER_TRIP = "tripId";
     private static final String PLAYSTORE_APP_BASE_URL = "market://details?id=";
     private static final String PLAYSTORE_BROWSER_BASE_URL = "https://play.google.com/store/apps/details?id=";
     private static final String PACKAGE_MAPS = "com.google.android.apps.maps";
@@ -22,7 +22,7 @@ public final class IntentHelper {
     private static final String SHARE_INTENT_TYPE = "text/plain";
     private static final String MAILTO_URI = "mailto:";
     private static final String HTTPS_SCHEME = "https";
-    private static final String DETAILS_ACTIVITY_PATH = "trips";
+    private static final String DETAILS_ACTIVITY_PATH = "trip-details";
 
     public static Intent getMapsLocationItent(Coordinates coordinates) {
         Uri mapsUri = Uri.parse(buildCoordinatesUri(coordinates));
@@ -45,15 +45,25 @@ public final class IntentHelper {
         return intent;
     }
 
-    public static Intent getShareDetailUrlIntent(String tripId) {
+    public static Intent getShareDetailsUrlIntent(String tripId) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType(SHARE_INTENT_TYPE);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, buildDetailUrl(tripId));
+        shareIntent.putExtra(Intent.EXTRA_TEXT, buildDetailsUrl(tripId).toString());
         return shareIntent;
     }
 
-    private static String buildDetailUrl(String tripId) {
-        return Constants.BASE_URL + "/" + tripId;
+    public static Intent getDetailsActivityUrl(String tripId) {
+        return new Intent(Intent.ACTION_VIEW, buildDetailsUrl(tripId));
+    }
+
+    private static Uri buildDetailsUrl(String tripId) {
+        Uri.Builder uriBuilder = new Uri.Builder();
+        uriBuilder
+                .scheme(HTTPS_SCHEME)
+                .authority(INSTANT_TRIP_URL_AUTHORITY)
+                .appendPath(DETAILS_ACTIVITY_PATH)
+                .appendPath(tripId);
+        return uriBuilder.build();
     }
 
     public static Intent getInstantTripPlayStoreAppIntent() {
@@ -66,17 +76,6 @@ public final class IntentHelper {
 
     private static Uri buildPlayStoreUrl(String baseUrl) {
         return Uri.parse(baseUrl + BuildConfig.APPLICATION_ID);
-    }
-
-    public static Intent getDetailsActivityUrl(String tripId) {
-        Uri.Builder uriBuilder = new Uri.Builder();
-        uriBuilder
-                .scheme(HTTPS_SCHEME)
-                .authority(INSTANT_TRIP_URL_AUTHORITY)
-                .appendPath(DETAILS_ACTIVITY_PATH)
-                .appendPath(tripId);
-
-        return new Intent(Intent.ACTION_VIEW, uriBuilder.build());
     }
 
 }

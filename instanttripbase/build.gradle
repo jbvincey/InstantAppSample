@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,6 +21,9 @@ android {
 }
 
 dependencies {
+    application project(':instanttripapk')
+    feature project (':instanttripdetails')
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -39,5 +42,4 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.1'
 
     compile 'commons-io:commons-io:2.5'
-
 }

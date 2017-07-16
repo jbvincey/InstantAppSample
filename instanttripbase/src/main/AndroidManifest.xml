@@ -40,30 +40,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.jbvincey.instantappssample.activities.DetailsActivity">
-            <intent-filter android:order="0">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="instantappsample.jbvincey.com"
-                    android:pathPattern="/trips/.*"
-                    android:scheme="http" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="instantappsample.jbvincey.com"
-                    android:pathPattern="/trips/.*"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

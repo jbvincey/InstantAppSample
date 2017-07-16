@@ -1,1 +1,1 @@
-include ':instanttrip-base', ':instanttrip-apk', ':instanttrip-instantapp'
+include ':instanttripbase', ':instanttripapk', ':instanttripinstantapp', ':instanttripdetails'

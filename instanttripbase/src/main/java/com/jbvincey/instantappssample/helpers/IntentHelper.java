@@ -52,8 +52,12 @@ public final class IntentHelper {
         return shareIntent;
     }
 
-    public static Intent getDetailsActivityUrl(String tripId) {
-        return new Intent(Intent.ACTION_VIEW, buildDetailsUrl(tripId));
+    public static Intent getDetailsActivityUrl(String tripId, boolean instantApp) {
+        Intent detailsActivityIntent = new Intent(Intent.ACTION_VIEW, buildDetailsUrl(tripId));
+        if (!instantApp) {
+            detailsActivityIntent.setPackage(BuildConfig.APPLICATION_ID);
+        }
+        return detailsActivityIntent;
     }
 
     private static Uri buildDetailsUrl(String tripId) {

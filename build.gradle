@@ -27,6 +27,8 @@ ext {
     compileSdkVersion = 25
     buildToolsVersion = '25.0.3'
     androidSupport = '25.4.0'
+    versionCode = 1
+    versionName = '1.0'
 
 }
 

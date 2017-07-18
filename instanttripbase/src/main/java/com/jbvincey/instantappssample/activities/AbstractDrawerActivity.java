@@ -57,10 +57,16 @@ public abstract class AbstractDrawerActivity extends AppCompatActivity implement
     int getLayout();
 
     private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        navigationView = (NavigationView) findViewById(R.id.navigationView);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        toolbar = getToolbar(); //(Toolbar) findViewById(R.id.toolbar);
+        navigationView = getNavigationView(); //(NavigationView) findViewById(R.id.navigationView);
+        drawerLayout = getDrawer();//(DrawerLayout) findViewById(getDrawerLayoutIdentifier());
     }
+
+    protected abstract Toolbar getToolbar();
+
+    protected abstract NavigationView getNavigationView();
+
+    protected abstract DrawerLayout getDrawer();
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);

@@ -1,12 +1,16 @@
-package com.jbvincey.instantappssample.activities;
+package com.backelite.instanttriplist.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
+import com.backelite.instanttriplist.R;
+import com.backelite.instanttriplist.adapters.TripAdapter;
 import com.google.android.instantapps.InstantApps;
-import com.jbvincey.instantappssample.R;
-import com.jbvincey.instantappssample.adapters.TripAdapter;
+import com.jbvincey.instantappssample.activities.AbstractDrawerActivity;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
 import com.jbvincey.instantappssample.helpers.IntentHelper;
 import com.jbvincey.instantappssample.models.Trip;
@@ -37,6 +41,20 @@ public class MainActivity extends AbstractDrawerActivity implements MainPresente
         return R.layout.activity_main;
     }
 
+    @Override
+    protected Toolbar getToolbar() {
+        return (Toolbar) findViewById(R.id.toolbar);
+    }
+
+    @Override
+    protected NavigationView getNavigationView() {
+        return (NavigationView) findViewById(R.id.navigationView);
+    }
+
+    @Override
+    protected DrawerLayout getDrawer() {
+        return (DrawerLayout) findViewById(R.id.drawer);
+    }
 
     @Override
     public void onDestroy() {

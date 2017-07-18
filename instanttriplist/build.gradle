@@ -1,12 +1,11 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.feature'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
 
+
     defaultConfig {
-        applicationId "com.jbvincey.instantappssample"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode rootProject.versionCode
@@ -24,7 +23,5 @@ android {
 }
 
 dependencies {
-    implementation project (':instanttripbase')
-    implementation project (':instanttripdetails')
-    implementation project (':instanttriplist')
+    api project(':instanttripbase')
 }

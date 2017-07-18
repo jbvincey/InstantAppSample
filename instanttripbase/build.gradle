@@ -22,7 +22,8 @@ android {
 
 dependencies {
     application project(':instanttripapk')
-    feature project (':instanttripdetails')
+    feature project(':instanttripdetails')
+    feature project(":instanttriplist")
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -42,4 +43,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.1'
 
     compile 'commons-io:commons-io:2.5'
+    //api 'com.android.support:appcompat-v7:26.0.0-beta2'
 }

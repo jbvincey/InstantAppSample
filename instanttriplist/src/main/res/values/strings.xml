@@ -1,0 +1,3 @@
+<resources>
+    <string name="trip_list_loading_error">Sorry, an error occurred while loading the trips available, please try again later.</string>
+</resources>

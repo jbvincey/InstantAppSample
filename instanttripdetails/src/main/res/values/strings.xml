@@ -8,8 +8,6 @@
 
     <string name="booking_confirmed">Your booking for %s is confirmed, enjoy your trip!</string>
 
-    <string name="trip_list_loading_error">Sorry, an error occurred while loading the trips available, please try again later.</string>
-
     <string name="trip_loading_error">Sorry, an error occurred while loading this trip, please try again later.</string>
 
     <string name="trip_error_name">Trip unavaible</string>

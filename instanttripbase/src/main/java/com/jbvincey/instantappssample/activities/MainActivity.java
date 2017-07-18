@@ -1,8 +1,11 @@
 package com.jbvincey.instantappssample.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.jbvincey.instantappssample.R;
 import com.jbvincey.instantappssample.adapters.TripAdapter;
@@ -41,6 +44,22 @@ public class MainActivity extends AbstractDrawerActivity implements MainPresente
         presenter.unbind();
         presenter = null;
         super.onDestroy();
+    }
+
+
+    @Override
+    protected Toolbar getToolbar() {
+        return (Toolbar) findViewById(R.id.toolbar);
+    }
+
+    @Override
+    protected NavigationView getNavigationView() {
+        return (NavigationView) findViewById(R.id.navigationView);
+    }
+
+    @Override
+    protected DrawerLayout getDrawer() {
+        return (DrawerLayout) findViewById(R.id.drawer);
     }
 
     @Override

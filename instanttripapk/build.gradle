@@ -25,5 +25,5 @@ android {
 }
 
 dependencies {
-    implementation project (':instanttrip-base')
+    implementation project (':instanttripbase')
 }

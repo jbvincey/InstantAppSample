@@ -1,5 +1,5 @@
 apply plugin: 'com.android.instantapp'
 
 dependencies {
-    implementation project (':instanttrip-base')
+    implementation project (':instanttripbase')
 }

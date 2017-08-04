@@ -1,10 +1,10 @@
-package com.jbvincey.instantappssample.helper;
+package com.jbvincey.instantappssample.helpers;
 
 import android.content.Intent;
 import android.net.Uri;
 
 import com.jbvincey.instantappssample.BuildConfig;
-import com.jbvincey.instantappssample.model.Coordinates;
+import com.jbvincey.instantappssample.models.Coordinates;
 
 /**
  * Created by jean-baptistevincey on 24/06/2017.

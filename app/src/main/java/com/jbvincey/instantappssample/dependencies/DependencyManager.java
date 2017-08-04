@@ -2,7 +2,7 @@ package com.jbvincey.instantappssample.dependencies;
 
 import android.content.Context;
 
-import com.jbvincey.instantappssample.presenters.DetailPresenter;
+import com.jbvincey.instantappssample.presenters.DetailsPresenter;
 import com.jbvincey.instantappssample.presenters.DrawerPresenter;
 import com.jbvincey.instantappssample.presenters.MainPresenter;
 
@@ -35,8 +35,8 @@ public class DependencyManager {
         return new MainPresenter(this.repositoryModule.provideTripRepository());
     }
 
-    public DetailPresenter provideDetailPresenter() {
-        return new DetailPresenter(this.repositoryModule.provideTripRepository());
+    public DetailsPresenter provideDetailPresenter() {
+        return new DetailsPresenter(this.repositoryModule.provideTripRepository());
     }
 
     public DrawerPresenter provideDrawerPresenter() {

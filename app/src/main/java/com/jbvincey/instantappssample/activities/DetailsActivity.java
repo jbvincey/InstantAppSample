@@ -13,21 +13,21 @@ import android.widget.TextView;
 
 import com.jbvincey.instantappssample.R;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
-import com.jbvincey.instantappssample.helper.IntentHelper;
-import com.jbvincey.instantappssample.helper.ResourceHelper;
-import com.jbvincey.instantappssample.model.Coordinates;
-import com.jbvincey.instantappssample.model.Trip;
-import com.jbvincey.instantappssample.presenters.DetailPresenter;
+import com.jbvincey.instantappssample.helpers.IntentHelper;
+import com.jbvincey.instantappssample.helpers.ResourceHelper;
+import com.jbvincey.instantappssample.models.Coordinates;
+import com.jbvincey.instantappssample.models.Trip;
+import com.jbvincey.instantappssample.presenters.DetailsPresenter;
 
 /**
  * Created by jean-baptistevincey on 09/06/2017.
  */
 
-public class DetailsActivity extends AbstractDrawerActivity implements DetailPresenter.View {
+public class DetailsActivity extends AbstractDrawerActivity implements DetailsPresenter.View {
 
     private static final String KEY_TRIP_ID = "KEY_TRIP_ID";
 
-    private DetailPresenter presenter;
+    private DetailsPresenter presenter;
 
     private ImageView tripPicture;
     private TextView tripGrade;
@@ -100,7 +100,6 @@ public class DetailsActivity extends AbstractDrawerActivity implements DetailPre
 
     @Override
     public void setupTripView(final Trip trip) {
-        tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(this, trip.getCardImageFile()));
         tripPicture.setVisibility(View.VISIBLE);
         tripPicture.setImageResource(ResourceHelper.getImageResourceFromName(this, trip.getCardImageFile()));
         tripName.setVisibility(View.VISIBLE);

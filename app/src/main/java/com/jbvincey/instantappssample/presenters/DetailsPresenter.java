@@ -1,7 +1,7 @@
 package com.jbvincey.instantappssample.presenters;
 
-import com.jbvincey.instantappssample.model.Coordinates;
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.models.Coordinates;
+import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.repositories.TripRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -13,13 +13,13 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jean-baptistevincey on 13/06/2017.
  */
 
-public class DetailPresenter extends AbstractPresenter<DetailPresenter.View> {
+public class DetailsPresenter extends AbstractPresenter<DetailsPresenter.View> {
 
     private TripRepository tripRepository;
 
     private Trip trip;
 
-    public DetailPresenter(TripRepository tripRepository) {
+    public DetailsPresenter(TripRepository tripRepository) {
         super();
         this.tripRepository = tripRepository;
     }
@@ -39,7 +39,7 @@ public class DetailPresenter extends AbstractPresenter<DetailPresenter.View> {
                 new Consumer<Trip>() {
                     @Override
                     public void accept(Trip trip) throws Exception {
-                        DetailPresenter.this.trip = trip;
+                        DetailsPresenter.this.trip = trip;
                         view.setupTripView(trip);
                     }
                 },

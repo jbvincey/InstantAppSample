@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.models.Trip;
 
 import org.apache.commons.io.IOUtils;
 

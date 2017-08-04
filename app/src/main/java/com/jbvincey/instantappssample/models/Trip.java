@@ -1,4 +1,4 @@
-package com.jbvincey.instantappssample.model;
+package com.jbvincey.instantappssample.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

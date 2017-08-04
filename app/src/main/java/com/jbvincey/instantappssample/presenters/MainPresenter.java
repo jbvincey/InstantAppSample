@@ -1,6 +1,6 @@
 package com.jbvincey.instantappssample.presenters;
 
-import com.jbvincey.instantappssample.model.Trip;
+import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.repositories.TripRepository;
 
 import java.util.List;

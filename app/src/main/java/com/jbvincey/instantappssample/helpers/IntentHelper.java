@@ -13,7 +13,6 @@ import com.jbvincey.instantappssample.models.Coordinates;
 public final class IntentHelper {
 
     public static final String INSTANT_TRIP_URL_AUTHORITY = "instantappsample.jbvincey.com";
-    public static final String KEY_QUERY_PARAMETER_TRIP = "tripId";
     private static final String PLAYSTORE_APP_BASE_URL = "market://details?id=";
     private static final String PLAYSTORE_BROWSER_BASE_URL = "https://play.google.com/store/apps/details?id=";
     private static final String PACKAGE_MAPS = "com.google.android.apps.maps";

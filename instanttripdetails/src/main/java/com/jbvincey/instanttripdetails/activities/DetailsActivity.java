@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.backelite.instanttripdetails.R;
 import com.jbvincey.instantappssample.activities.AbstractDrawerActivity;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
 import com.jbvincey.instantappssample.helpers.IntentHelper;
@@ -21,6 +20,7 @@ import com.jbvincey.instantappssample.helpers.ResourceHelper;
 import com.jbvincey.instantappssample.models.Coordinates;
 import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.presenters.DetailsPresenter;
+import com.jbvincey.instanttripdetails.R;
 
 /**
  * Created by jean-baptistevincey on 09/06/2017.

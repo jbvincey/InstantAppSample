@@ -1,4 +1,4 @@
-package com.backelite.instanttriplist.activities;
+package com.jbvincey.instanttriplist.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -7,14 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import com.backelite.instanttriplist.R;
-import com.backelite.instanttriplist.adapters.TripAdapter;
 import com.google.android.instantapps.InstantApps;
 import com.jbvincey.instantappssample.activities.AbstractDrawerActivity;
 import com.jbvincey.instantappssample.dependencies.DependencyManager;
 import com.jbvincey.instantappssample.helpers.IntentHelper;
 import com.jbvincey.instantappssample.models.Trip;
 import com.jbvincey.instantappssample.presenters.MainPresenter;
+import com.jbvincey.instanttriplist.R;
+import com.jbvincey.instanttriplist.adapters.TripAdapter;
 
 import java.util.List;
 

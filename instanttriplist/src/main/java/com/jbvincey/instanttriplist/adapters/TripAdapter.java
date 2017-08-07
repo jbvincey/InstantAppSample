@@ -1,4 +1,4 @@
-package com.backelite.instanttriplist.adapters;
+package com.jbvincey.instanttriplist.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.backelite.instanttriplist.R;
 import com.jbvincey.instantappssample.helpers.ResourceHelper;
 import com.jbvincey.instantappssample.models.Trip;
+import com.jbvincey.instanttriplist.R;
 
 import java.util.List;
 

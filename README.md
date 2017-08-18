@@ -186,5 +186,186 @@ mapIntent.setPackage(PACKAGE_MAPS);
 
 # Multi-feature instant app
 
-To be continued…
+In the last section, we managed to create an instant app. However the whole app is contained in only one feature module, which is unlikely to happen in real instant applications. In this section, we will make separate modules to embed our 2 features, the list of trips and the trip details, these 2 feature modules relying on the base feature module we created in the last section. 
 
+## List of trips feature module
+
+Click on **File** > **New** > **New Module** and choose **Feature Module**. Then define a name for this module (for example **InstantTrip List**) and finally choose **Add No Activity**.
+![creating list of trips module](/screenshots/tripListModuleCreation.jpg?raw=true)
+
+We will now move some of the code from the base feature module to our new module. Create an **activities** package as well as an **adapters** package, and move **MainActivity** and **TripAdapter** to these. Under **res/** directory create a **layout** folder, and move **activity_main.xml** and **item_trip.xml** from the base module to this new folder. You should now have something like this:
+![moving classes to list of trips module](/screenshots/tripListClasses.jpg?raw=true)
+
+In the base feature module manifest, copy the *application* element along with the *MainActivity* element, and paste into the manifest of the list of trips feature module, in order to get something like this (you also need to update the activity's package name):
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jbvincey.instanttriplist">
+    
+    <application
+        android:name="com.jbvincey.instantappssample.InstantAppSampleApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.jbvincey.instanttriplist.activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="yourdomain.com"
+                    android:path="/trips"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="yourdomain.com"
+                    android:path="/trips"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+```
+You should also remove the *MainActivity* element from the base module manifest.
+
+At this step, we need to adapt and clean some code. In **activity_main.xml** update the **MainActivity** package from the ```tools:context``` attribute. In the **MainActivity**, remove the **R** import (e.g. ```com.jbvincey.instantappssample.R```) and import the **R** dependency from the feature module (e.g. ```com.jbvincey.instanttriplist.R```). There is still a problem in the method ```showTripLoadingError```, the string resources are still in the base feature module. To cope with this, simply put the package name of the base module before ```R.string…``` You should get something like this:
+```java
+@Override
+public void showTripLoadingError() { 
+    showSnack(com.jbvincey.instantappssample.R.string.trip_list_loading_error);
+}
+```
+
+Repeat the same in the **TripAdapter** class, remove the **R** import and re-import **R** from the feature module.
+
+
+In **instanttriplist/build.gradle**, remove all dependencies and put ```api project(':instanttripbase')``` instead:
+```gradle
+dependencies {
+    api project(':instanttripbase')
+}
+```
+
+Finally we add the new module dependency. In **instanttripapk/build.gradle** and **instanttripinstantapp/build.gradle** add the dependency ```implementation project(':instanttriplist')```. You should have something like this:
+```gradle
+dependencies {
+    implementation project(':instanttripbase')
+    implementation project(':instanttriplist')
+}
+```
+
+In **instanttripbase/build.gradle**, make sure to have ```application project(':instanttripapk')``` and ```feature project(":instanttriplist")``` under dependencies (```feature project(":instanttriplist")``` should already be automatically added, usually at the end of the dependency block):
+```gradle
+dependencies {
+    application project(':instanttripapk')
+    feature project(":instanttriplist")
+    …
+}
+```
+
+That's it for the list of trips module! **Clean** and **Rebuild**, you should still be able to launch the app as full application and instant app.
+
+## Trip details feature module
+
+This is the last part of the project transformation. Create the new feature module: **File** > **New** > **New Module** and choose **Feature Module**. Then define a name for this module (for example **InstantTrip Details**) and choose **Add No Activity**.
+
+Create the package **activities** and move **DetailsActivity** to it. Create a **layout** directory under **res**/ and move **activity_detail.xml** to it. In this layout update the package name for **DetailsActivity** in the ```tools:context``` attribute. In **DetailsActivity**, remove the **R** import and re-import **R** from this feature module (e.g. ```com.jbvincey.instanttripdetails.R```). In ```showTripLoadingError()``` and ```confirmBooking()``` methods, add the base module package name before ```R.string…``` and ```R.drawable.asos``` (the drawable resources are also in the base feature module), as you did in **MainActivity**.
+
+In **MainActivity** in the method ```goToTripDetails()```you will notice that you have no reference to **DetailsActivity**, since it is in its own feature module now. Comment the line for now, and we will deal with instant app navigation in the next section.
+
+In the base feature module manifest, copy the *application* element along with the *DetailsActivity* element, and paste into the manifest of the trip details feature module, in order to get something like this (you also need to update the activity's package name):
+```xml
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jbvincey.instanttripdetails">
+
+    <application
+        android:name="com.jbvincey.instantappssample.InstantAppSampleApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="com.jbvincey.instanttripdetails.activities.DetailsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="yourdomain.com"
+                    android:pathPattern="/trips/.*"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="yourdomain.com"
+                    android:pathPattern="/trips/.*"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+```
+
+In the base feature module, remove the *DetailsActivity* and the *application* elements. Your base feature module manifest should look something like this:
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jbvincey.instantappssample">
+    
+</manifest>
+```
+
+In **instantdetails/build.gradle**, remove all dependencies and put ```api project(':instanttripbase')``` instead:
+```gradle
+dependencies {
+    api project(':instanttripbase')
+}
+```
+
+In **instanttripapk/build.gradle** and **instanttripinstantapp/build.gradle** add the dependency ```implementation project(':instanttripdetails')```. You should have something like this:
+```gradle
+dependencies {
+    implementation project(':instanttripbase')
+    implementation project(':instanttriplist')
+    implementation project(':instanttripdetails')
+}
+```
+
+In **instanttripbase/build.gradle**, make sure to have ```application project(':instanttripapk')``` and ```feature project(":instanttripdetails")``` under dependencies (```feature project(":instanttripdetails")``` should already be automatically added, usually at the end of the dependency block):
+
+```gradle
+dependencies {
+    application project(':instanttripapk')
+    feature project(":instanttriplist")
+    feature project(":instanttripdetails")
+    …
+}
+```
+
+## Navigation in instant app project
+
+To be continued…

@@ -179,7 +179,7 @@ Uninstall the app from your emulator or device and run with your new configurati
 
 We will do the same for the DetailsActivity. Create a new **Run Configuration** with a new name, select your instant app module, choose URL as launch option and this time give a matching URL with a valid trip identifier (you can see the list of trips in assets/trips/trips.json in your base feature module), for example **https://yourdomain.com/trips/3945314588**. Now run with this new configuration, you should directly go to the DetailsActivity with a specific trip (depending on the identifier you chose).
 
-Here it is, you have a running instant app! However, if you click on **location** in the DetailsActivity you will get a crash. The problem is that you are not allowed to specify a package name in an intent in order to launch a specific application (in this case Google Maps). Open the class **IntentHelper** and in the **getMapsLocationIntent()** method, comment the following line
+Here it is, you have a running instant app! However, if you click on **location** in the DetailsActivity you will get a crash. The problem is that you are not allowed to specify a package name in an intent in order to launch a specific application (in this case Google Maps). Open the class **IntentHelper** and in the **getMapsLocationIntent()** method, comment the following line:
 ```java
 mapIntent.setPackage(PACKAGE_MAPS);
 ```
@@ -191,9 +191,11 @@ In the last section, we managed to create an instant app. However the whole app 
 ## List of trips feature module
 
 Click on **File** > **New** > **New Module** and choose **Feature Module**. Then define a name for this module (for example **InstantTrip List**) and finally choose **Add No Activity**.
+
 ![creating list of trips module](/screenshots/tripListModuleCreation.jpg?raw=true)
 
 We will now move some of the code from the base feature module to our new module. Create an **activities** package as well as an **adapters** package, and move **MainActivity** and **TripAdapter** to these. Under **res/** directory create a **layout** folder, and move **activity_main.xml** and **item_trip.xml** from the base module to this new folder. You should now have something like this:
+
 ![moving classes to list of trips module](/screenshots/tripListClasses.jpg?raw=true)
 
 In the base feature module manifest, copy the *application* element along with the *MainActivity* element, and paste into the manifest of the list of trips feature module, in order to get something like this (you also need to update the activity's package name):

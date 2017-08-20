@@ -21,7 +21,7 @@ public final class IntentHelper {
     private static final String SHARE_INTENT_TYPE = "text/plain";
     private static final String MAILTO_URI = "mailto:";
     private static final String HTTPS_SCHEME = "https";
-    private static final String DETAILS_ACTIVITY_PATH = "trip-details";
+    private static final String DETAILS_ACTIVITY_PATH = "trips";
 
     public static Intent getMapsLocationItent(Coordinates coordinates) {
         Uri mapsUri = Uri.parse(buildCoordinatesUri(coordinates));

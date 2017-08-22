@@ -370,4 +370,40 @@ dependencies {
 
 ## Navigation in instant app project
 
-To be continued…
+In this last section, we will deal with navigation in the instant app project. In the last section you noticed that the MainActivity does not have access to the DetailsActivity anymore for it is in an other module. Also, when the MainActivity is launched as instant app, access to the DetailsActivity can only be done by loading the trip details feature apk. To achieve this, we will simply launch the DetailsActivity with its URL.
+
+In **MainActivity** in the method ```goToTripDetails```, start the activity using ```getDetailsActivityUrl```from the **IntentHelper**:
+```java
+@Override
+public void goToTripDetails(String tripId) {
+    //DetailsActivity.startActivity(this, tripId);
+    startActivity(IntentHelper.getDetailsActivityUrl(tripId));
+}
+```
+
+You can check out how the intent is built in the ```getDetailsActivityUrl``` method. Now we have the expected behavior: clicking on a trip in the MainActivity will load the trip details module. However, you will notice that you won't be able to navigate in your instant app (especially if your instant app is not online yet) since it will really trying to load the modules from the internet. 
+Another problem is that it might also try to load the instant app modules even in the installed Play Store APK. A simple way to cope with this is to specify the package name in the intent, only in the case of the installed app.
+
+In **IntentHelper** in the method ```getDetailsActivityUrl```, add a boolean argument *isInstantApp*, when it is false specify the package to the intent (using *BuildConfig.APPLICATION_ID*). You should get this:
+```java
+public static Intent getDetailsActivityUrl(String tripId, boolean isInstantApp) {
+    Intent detailsActivityIntent = new Intent(Intent.ACTION_VIEW, buildDetailsUrl(tripId));
+    if (!isInstantApp) {
+        detailsActivityIntent.setPackage(BuildConfig.APPLICATION_ID);
+    }
+    return detailsActivityIntent;
+}
+```
+For this to work, make sure that the *applicationId* in **instanttripapk/build.gradle** is the same than the package name from your base feature module (e.g. **com.jbvincey.instantappssample**).
+Also, check the value of *INSTANT_TRIP_URL_AUTHORITY* and *DETAILS_ACTIVITY_PATH* in **IntentHelper**, to correspond respectively to the host (e.g. **yourdomain.com**) and the path (e.g. **trips**) of your URL (defined in **instanttripdetails/AndroidManifest.xml**).
+
+Now in the method ```goToTripDetails``` in the **MainActivity**, you need to check if the application is launched as instant app. To get this, you can use ```InstantApps.isInstantApp(Context context)``` (made available by the dependency ```com.google.android.instantapps:instantapps```, which was already added in the project in **instanttripbase/build.gradle**). You would end up with:
+```java
+@Override
+public void goToTripDetails(String tripId) {
+    //DetailsActivity.startActivity(this, tripId);
+    startActivity(IntentHelper.getDetailsActivityUrl(tripId, InstantApps.isInstantApp(this)));
+}
+```
+
+That's it folks, you can now navigate again in your app when launched as installed APK. You can compare your project with the branch ```develop_instant_multifeature```. If you come up with suggestions or new ideas for this sample project don't hesitate to share it! I hope this sample will give you some ideas and help you build wonderful instant apps!

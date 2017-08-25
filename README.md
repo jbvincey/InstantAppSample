@@ -6,6 +6,10 @@ Checkout the [official website](https://developer.android.com/topic/instant-apps
 
 This sample is aiming to show how to transform a regular native Android application into an Instant Application.
 
+![Instant App loading](/screenshots/instantTripLoadingHalf.jpg?raw=true)
+![Trips details](/screenshots/sampleTripDetailsHalf.jpg?raw=true)
+
+
 
 # Setup
 These are the prerequisites that you will need in order to start and run the project.
@@ -31,6 +35,7 @@ First of all, clone the project:
 Then open with Android Studio 3 (Open an existing Android Studio project), checkout ```develop_installed_app``` branch and run the project. This sample is composed of 2 activities, the first one showing a list of vacation trips, the second one giving the details of a trip. The project is based on a Model-View-Presenter architecture. Android Studio might ask you to update the gradle version (gradle plugin 3 was still in beta at the time this project was developed).
 
 Now you can try to run the project on a device or emulator (beware that minimal Android SDK version is 23).
+
 ![list of trips](/screenshots/sampleListOfTrips.jpg?raw=true)
 ![trips details](/screenshots/sampleTripDetails.jpg?raw=true)
 
@@ -175,6 +180,7 @@ Now it's time to test our instant app! First sync Gradle and rebuild. Then dropd
 ![run configuration](/screenshots/runConfiguration.jpg?raw=true)
 
 Uninstall the app from your emulator or device and run with your new configuration: this should launch the MainActivity as an instant app (you should see the following screen just before the list of trips).
+
 ![Instant App loading](/screenshots/instantTripLoading.jpg?raw=true)
 
 We will do the same for the DetailsActivity. Create a new **Run Configuration** with a new name, select your instant app module, choose URL as launch option and this time give a matching URL with a valid trip identifier (you can see the list of trips in assets/trips/trips.json in your base feature module), for example **https://yourdomain.com/trips/3945314588**. Now run with this new configuration, you should directly go to the DetailsActivity with a specific trip (depending on the identifier you chose).

@@ -413,3 +413,22 @@ public void goToTripDetails(String tripId) {
 ```
 
 That's it folks, you can now navigate again in your app when launched as installed APK. You can compare your project with the branch ```develop_instant_multifeature```. If you come up with suggestions or new ideas for this sample project don't hesitate to share it! I hope this sample will give you some ideas and help you build wonderful instant apps!
+
+
+License
+--------
+
+    Copyright 2017 Jean-Baptiste VINCEY.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+

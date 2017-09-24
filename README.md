@@ -4,7 +4,11 @@ An Android Instant App is a native Android app reachable through a URL with no G
 This allows to use the power of the internet to make Android apps much more reachable and shareable.
 Checkout the [official website](https://developer.android.com/topic/instant-apps/overview.html) to get an overview of Android Instant Apps.
 
-This sample is aiming to show how to transform a regular native Android application into an Instant Application.
+This sample is aiming to show how to transform a regular native Android application into an Instant Application. You can try this Instant App with these links:
+* [list of trips](https://jbvincey.com/instanttripdemo/trips/)
+* [trip details](https://jbvincey.com/instanttripdemo/trips/8399271233)
+
+To proceed, first enable Instant Apps on your Android phone (Android 6+) in **Settings** > **Google** > **Instant app** and then click on these links from Chrome (writing them in the browser does not work, Instant Apps are only triggered on click).
 
 ![Instant App loading](/screenshots/instantTripLoadingHalf.jpg?raw=true)
 ![Trips details](/screenshots/sampleTripDetailsHalf.jpg?raw=true)
@@ -43,7 +47,7 @@ Now you can try to run the project on a device or emulator (beware that minimal 
 
 ## Feature modules
 
-Feature modules are the base of the Instant Apps architecture. Basically, a feature module will implement a feature that is addressable through a URL and therefore can be run as an instant app. Usually an application will be split into several feature modules, each of them giving access to a feature of the application reachable through a URL. 
+Feature modules are the base of the Instant Apps architecture. Basically, a feature module will implement a feature that is addressable through a URL and therefore can be run as an instant app. Usually an application will be split into several feature modules, each of them giving access to a feature of the application reachable through a URL.
 
 Feature modules work in 2 different ways:
 * for a standard application it generates an aar and works like a library
@@ -61,7 +65,7 @@ There is actually a special type of feature module called *base feature* module.
 
 The goal of this step is to convert a standard application project into an instant app project with one feature. You can try it yourself based on the following instructions, starting from the ```develop_installed_app``` git branch. You could also see the result on the ```develop_instant_monofeature``` git branch.
 
-To achieve this, we will convert the existing *app* module into a *base feature* module, and then add a basic *application* module as well as an *instant app* module that will only depend on the base feature module. 
+To achieve this, we will convert the existing *app* module into a *base feature* module, and then add a basic *application* module as well as an *instant app* module that will only depend on the base feature module.
 
 First checkout ```develop_installed_app```, rename the ```app``` module into ```instanttripbase``` (**right-click** on ```app``` module > **Refactor** > **Rename**).
 
@@ -115,7 +119,7 @@ Make sure to keep the *android* domain declaration in this manifest (be careful 
 
 You can now run a Gradle synchronization, rebuild the project, and try it on an emulator or device, it should work exactly like before.
 
-Notice that you cannot use *Butterknife*, nor put resource identifiers ```R.id``` in switch statements, since these identifiers are not finals (remember that all your code is now in a module). 
+Notice that you cannot use *Butterknife*, nor put resource identifiers ```R.id``` in switch statements, since these identifiers are not finals (remember that all your code is now in a module).
 
 ### Adding the instant app module
 
@@ -131,7 +135,7 @@ dependencies {
 
 At this point, the last important step is to associate links (URLs) to our features. In this sample application, there are 2 features:
 * the first one is the list of trips available
-* the second one the detail view of a trip. 
+* the second one the detail view of a trip.
 
 Android Studio 3 provides a built-in tool for this task. Click on **Tools** > **App Links Assistant** > **Open URL Mapping Editor**.
 
@@ -192,7 +196,7 @@ mapIntent.setPackage(PACKAGE_MAPS);
 
 # Multi-feature instant app
 
-In the last section, we managed to create an instant app. However the whole app is contained in only one feature module, which is unlikely to happen in real instant applications. In this section, we will make separate modules to embed our 2 features, the list of trips and the trip details, these 2 feature modules relying on the base feature module we created in the last section. 
+In the last section, we managed to create an instant app. However the whole app is contained in only one feature module, which is unlikely to happen in real instant applications. In this section, we will make separate modules to embed our 2 features, the list of trips and the trip details, these 2 feature modules relying on the base feature module we created in the last section.
 
 ## List of trips feature module
 
@@ -208,7 +212,7 @@ In the base feature module manifest, copy the *application* element along with t
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jbvincey.instanttriplist">
-    
+
     <application
         android:name="com.jbvincey.instantappssample.InstantAppSampleApplication"
         android:allowBackup="true"
@@ -254,7 +258,7 @@ You should also remove the *MainActivity* element from the base module manifest.
 At this step, we need to adapt and clean some code. In **activity_main.xml** update the **MainActivity** package from the ```tools:context``` attribute. In the **MainActivity**, remove the **R** import (e.g. ```com.jbvincey.instantappssample.R```) and import the **R** dependency from the feature module (e.g. ```com.jbvincey.instanttriplist.R```). There is still a problem in the method ```showTripLoadingError```, the string resources are still in the base feature module. To cope with this, simply put the package name of the base module before ```R.string…``` You should get something like this:
 ```java
 @Override
-public void showTripLoadingError() { 
+public void showTripLoadingError() {
     showSnack(com.jbvincey.instantappssample.R.string.trip_list_loading_error);
 }
 ```
@@ -343,7 +347,7 @@ In the base feature module, remove the *DetailsActivity* and the *application* e
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jbvincey.instantappssample">
-    
+
 </manifest>
 ```
 
@@ -387,7 +391,7 @@ public void goToTripDetails(String tripId) {
 }
 ```
 
-You can check out how the intent is built in the ```getDetailsActivityUrl``` method. Now we have the expected behavior: clicking on a trip in the MainActivity will load the trip details module. However, you will notice that you won't be able to navigate in your instant app (especially if your instant app is not online yet) since it will really trying to load the modules from the internet. 
+You can check out how the intent is built in the ```getDetailsActivityUrl``` method. Now we have the expected behavior: clicking on a trip in the MainActivity will load the trip details module. However, you will notice that you won't be able to navigate in your instant app (especially if your instant app is not online yet) since it will really trying to load the modules from the internet.
 Another problem is that it might also try to load the instant app modules even in the installed Play Store APK. A simple way to cope with this is to specify the package name in the intent, only in the case of the installed app.
 
 In **IntentHelper** in the method ```getDetailsActivityUrl```, add a boolean argument *isInstantApp*, when it is false specify the package to the intent (using *BuildConfig.APPLICATION_ID*). You should get this:
@@ -431,4 +435,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-

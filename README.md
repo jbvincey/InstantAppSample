@@ -8,7 +8,7 @@ This sample is aiming to show how to transform a regular native Android applicat
 * [list of trips](https://jbvincey.com/instanttripdemo/trips/)
 * [trip details](https://jbvincey.com/instanttripdemo/trips/8399271233)
 
-To proceed, first enable Instant Apps on your Android phone (Android 6+) in **Settings** > **Google** > **Instant app** and then click on these links from Chrome (writing them in the browser does not work, Instant Apps are only triggered on click).
+To proceed, first enable Instant Apps on your Android phone (Android 6+) in **Settings** > **Google** > **Instant app** and then click on these links from Chrome (writing them in the browser does not work, Instant Apps are only triggered on click). You can also find the [installed app](https://play.google.com/store/apps/details?id=com.jbvincey.instanttripdemo) on the Play Store.
 
 ![Instant App loading](/screenshots/instantTripLoadingHalf.jpg?raw=true)
 ![Trips details](/screenshots/sampleTripDetailsHalf.jpg?raw=true)

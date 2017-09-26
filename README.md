@@ -416,8 +416,47 @@ public void goToTripDetails(String tripId) {
 }
 ```
 
-That's it folks, you can now navigate again in your app when launched as installed APK. You can compare your project with the branch ```develop_instant_multifeature```. If you come up with suggestions or new ideas for this sample project don't hesitate to share it! I hope this sample will give you some ideas and help you build wonderful instant apps!
+# Releasing Instant Apps
 
+The first step to prepare your instant app release is to generate the *Digital Asset Links File*. This JSON file needs to be put at the root of your website. It allows the Play Store to redirect users to your instant app when clicking on your website links supported by the app. The generator is available in the *App Links Assistant* (**Tools** > **App Links Assistant** > **Open Digital Asset Links File Generator**). To generate this file, you need to provide:
+* your website domain
+* the application ID (should already be filled)
+* the keystore for your app (be sure to use a release keystore)
+
+Then click on **Generate Digital Asset Link file**. Beware that if you activated **Google Play App Signin** on the Play Store for your app, the Play Store will resign your app with a new certificate on upload. In that case your local keystore you provided to generate the file won't be acknowledge when you try to upload your instant app. To cope with this go to **Release Management > App signing** on the Play Console, you will find the actual App signing certificate fingerprint from keystore used to resign your app. Then you can manually replace in the generated asset link file the SHA256 fingerprint from the Play Store keystore. Now upload the asset links file to your website under ```/.well-known/assetlinks.json```.
+
+Finally click on **Link and Verify**. This will add the following line in ```strings.xml``` from the basefeature,
+```xml
+<string name="asset_statements" translatable="false">[{\n  \"relation\": [\"delegate_permission/common.handle_all_urls\"],\n  \"target\": {\n    \"namespace\": \"web\",\n    \"site\": \"https://yourdomain.com\",\n  }\n}]</string>
+```
+as well as this element in each feature module manifest (inside ```<application>``` element):
+```xml
+<meta-data
+            android:name="asset_statements"
+            android:resource="@string/asset_statements" />
+```
+It will also add ```android:autoVerify="true"```in every ```<intent-filter>``` of your app.
+The last thing it does is checking the asset links file directly on your website, so make sure to upload it right.
+
+Now that the asset links file is ok, a few modifications in the manifests are still required. First, add ```android:targetSandboxVersion="2"```in the ```<manifest>``` element of all your manifests (the installed module, base feature module, and every feature modules). Now add the following element in the manifest declaring your launcher activity, inside the launcher ```<activity>``` element:
+```xml
+<meta-data
+         android:name="default-url"
+         android:value="https://jbvincey.com/instanttripdemo/trips/" />
+```
+Beware that it needs to be your launcher activity declaring:
+```xml
+<intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+```
+
+You are finally ready to upload your instant app on the Play Store. You will need to deploy the installed version before the intant app version, or it won't event let you upload the instant APKs. You can for example deploy the installed in beta and then the instant also in beta, you will need to deploy the installed in production before deploying the instant in production.
+To upload the instant APKs, zip the base feature as well as all feature APKs in a folder, and upload them in the instant app section. **Save**, **verify** and if no error appear, you are ready to deploy! Otherwise simply follow the error messages for troubleshooting.
+
+
+That's it folks, you can now navigate again in your app when launched as installed APK. You can compare your project with the branch ```develop_instant_multifeature```. If you come up with suggestions or new ideas for this sample project don't hesitate to share it! I hope this sample will give you some ideas and help you build wonderful instant apps!
 
 License
 --------

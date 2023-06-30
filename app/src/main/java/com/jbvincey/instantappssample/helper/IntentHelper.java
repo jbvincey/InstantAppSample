@@ -11,7 +11,7 @@ import com.jbvincey.instantappssample.model.Coordinates;
  * Created by jean-baptistevincey on 24/06/2017.
  */
 
-public final class IntentHelper {
+public final class hfhfhdashldhgklhslgr {
 
     private static final String PLAYSTORE_BASE_URL = "market://details?id=";
 
